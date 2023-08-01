@@ -2,21 +2,21 @@ package br.com.ToDoList.functions;
 
 import java.util.Scanner;
 
-public class CriaParametro {
+public class CreateParameter {
 	
 	public Scanner scanner;
 	
-	public CriaParametro() {
+	public CreateParameter() {
 		scanner = new Scanner(System.in);
 	}
 	
 	
-	public String CriaString(String mensagem) {
+	public String CreateString(String mensagem) {
 		System.out.print(mensagem);
 		return scanner.next();
 	}
 	
-	public int CriaInt(String mensagem) {
+	public int CreateInt(String mensagem) {
 		int numero = 0;
 		while (true) {
 			System.out.print(mensagem);
@@ -31,7 +31,7 @@ public class CriaParametro {
 		return numero;
 	}
 	
-	public double CriaDouble(String mensagem) {
+	public double CreateDouble(String mensagem) {
 		double numeroDouble = 0.0;
 		while (true) {
 			System.out.print(mensagem);
@@ -45,6 +45,15 @@ public class CriaParametro {
 		}
 		return numeroDouble;
 	}
+	
+    public String title(String mensagem, int numero) {
+        String linha = "==".repeat(numero);
+        return linha + "\n" + mensagem + "\n" + linha;
+    }
+
+    public String line(int numero) {
+        return "==".repeat(numero);
+    }
 }
 
 
