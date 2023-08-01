@@ -7,7 +7,7 @@ class main {
 	public static void main(String[] args) throws SQLException {
 		CriaParametro criaParametro = new CriaParametro();
         System.out.println("Hello world!");
-        ConnectionFactory connectionFactory = new ConnectionFactory();
+        ConnectionFactory Cnexao = new ConnectionFactory();
        
         String nome = criaParametro.CriaString("Nome: ");
         System.out.println(nome);
