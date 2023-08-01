@@ -1,0 +1,45 @@
+package br.com.ToDoList.conexao;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class ConectaDB {
+	
+	private Statement statement;
+	private Connection conn ;
+
+	public ConectaDB () throws SQLException {
+		
+		String Conexao = "jdbc:mysql://localhost/todolist?useTimezone=true&serverTimezone=UTC" ;
+		String usuario = "root";
+		String senha = "0910";
+		conn = DriverManager.getConnection(Conexao,usuario,senha);
+		System.out.println("Conectou!!");
+		
+	}
+	
+	public void FechaDB() throws SQLException {
+		conn.close();
+//	public void conecta() throws SQLException {
+//		
+//		String Conexao = "jdbc:mysql://localhost/todolist?useTimezone=true&serverTimezone=UTC" ;
+//		String usuario = "root";
+//		String senha = "0910";
+//		Connection conn = 
+//		DriverManager.getConnection(Conexao,usuario,senha);
+//		System.out.println("Conectou!!");
+//		statement = conn.createStatement() ;
+//        String criaTabela = "CREATE TABLE IF NOT EXISTS TAREFAS ("
+//        		+ "id INT AUTO_INCREMENT NOT NULL ,"
+//        		+ "nome VARCHAR(50),"
+//        		+ "PRIMARY KEY (id))"
+//        		 ;
+//        
+        
+//        statement.execute(criaTabela);
+		
+	}
+}
+//"jdbc:mysql://localhost/todolist?useTimezone=true&serverTimezone=UTC","root","0910"
