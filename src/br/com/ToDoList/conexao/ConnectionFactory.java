@@ -5,11 +5,12 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
+
+
 
 public class ConnectionFactory {
-	
-	private Statement statement;
+
 	private Connection conn ;
 	private PreparedStatement preparedStatement ; 
 
@@ -19,10 +20,11 @@ public class ConnectionFactory {
 		String usuario = "root";
 		String senha = "0910";
 		conn = DriverManager.getConnection(Conexao,usuario,senha);
-		System.out.println("Conectou!!");
 		
-	}
-	
+        System.out.println("Conectou!!");
+    }
+
+
 	public void CloseDB() throws SQLException {
 		conn.close();
 	
@@ -30,30 +32,45 @@ public class ConnectionFactory {
 	
 	public void CreateTable() throws SQLException {
 		
-		try {
-			statement = conn.createStatement();
-			
-			String CreateTable = "CREATE TABLE IF NOT EXISTS tasks("
+		try(
+			PreparedStatement  preparedStatement = conn.prepareStatement("CREATE TABLE IF NOT EXISTS tasks("
 					+ "id INT AUTO_INCREMENT PRIMARY KEY,  "
 					+ "task VARCHAR(255) NOT NULL, "
 					+ "description TEXT, "
 					+ "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
 					+ "due_data DATE,"
-					+ "status VARCHAR(80) DEFAULT 'por fazer')";
-			
-			statement.execute(CreateTable);
+					+ "status VARCHAR(80) DEFAULT 'por fazer')")){
 			
 			
+//			String CreateTable = "CREATE TABLE IF NOT EXISTS tasks("
+//					+ "id INT AUTO_INCREMENT PRIMARY KEY,  "
+//					+ "task VARCHAR(255) NOT NULL, "
+//					+ "description TEXT, "
+//					+ "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
+//					+ "due_data DATE,"
+//					+ "status VARCHAR(80) DEFAULT 'por fazer')";
+			conn.setAutoCommit(false);
+			preparedStatement.execute();
 			
-		} catch (SQLException e) {
+			conn.commit();
+			
+			
+			
+		}catch (SQLException e) {
 			System.out.println("erro ao criar a tabela" + e.getMessage());
+			System.out.println("ROLLBACK EXECUTADO");
+			conn.rollback();
 		}
+		
 	}
 		public void  InsertIntoTable(String task , String description , String due_data , String status) throws SQLException{
 			
-			try {
+			try(
+					PreparedStatement  preparedStatement = conn.prepareStatement("INSERT INTO tasks "
+							+ "(task , description , due_data, status) VALUES (? , ? , ? , ?)"))
+			{
+//				preparedStatement = conn.prepareStatement("INSERT INTO tasks (task , description , due_data, status) VALUES (? , ? , ? , ?)");
 				conn.setAutoCommit(false);
-				preparedStatement = conn.prepareStatement("INSERT INTO tasks (task , description , due_data, status) VALUES (? , ? , ? , ?)");
 				preparedStatement.setString(1,task);
 				preparedStatement.setString(2,description);
 				preparedStatement.setString(3,due_data);
@@ -73,7 +90,7 @@ public class ConnectionFactory {
 		public void SelectTables() throws SQLException {
 			preparedStatement = conn.prepareStatement("SELECT * FROM tasks");
 			preparedStatement.execute();
-			ResultSet resultSet = preparedStatement.getResultSet();
+			try(ResultSet resultSet = preparedStatement.getResultSet();){
 			while(resultSet.next()) {
 				Integer id = resultSet.getInt("id");
 				String task = resultSet.getString("task");
@@ -88,18 +105,66 @@ public class ConnectionFactory {
 				System.out.println(" status " + status );
 				System.out.println();
 						
-						    
-				
-				
 				
 			}
 			
 		}
 		
-		
+			
 
 	}
-	
-	
+		
+		public void DeleteTable(int id ) throws SQLException {
+			
+			try( PreparedStatement  preparedStatement = conn.prepareStatement("DELETE FROM tasks WHERE id = ?")){
+				conn.setAutoCommit(false);
+				preparedStatement.setInt(1, id);
+				preparedStatement.executeUpdate();
+				conn.commit();
+				System.out.println("Tabela com id " + id + "deletada com sucesso" );
+				
+			}catch (SQLException e) {
+				System.out.println("erro ao deletar a tabela" + e.getMessage());
+				System.out.println("ROLLBACK EXECUTADO");
+				conn.rollback();
+			}
+		}
+
+
+		
+		public void  UpdateTable(String task , String description , String due_data , String status,int id ) throws SQLException{
+			
+			try(
+					PreparedStatement  preparedStatement = conn.prepareStatement("UPDATE task SET task = ? , description = ? , due_data = ? , status = ? WHERE id = ?"))
+			{
+//				preparedStatement = conn.prepareStatement("INSERT INTO tasks (task , description , due_data, status) VALUES (? , ? , ? , ?)");
+				conn.setAutoCommit(false);
+				preparedStatement.setString(1,task);
+				preparedStatement.setString(2,description);
+				preparedStatement.setString(3,due_data);
+				preparedStatement.setString(4,status);
+				preparedStatement.setInt(5,id);
+				preparedStatement.executeUpdate();
+				conn.commit();
+				
+			}catch (SQLException e) {
+				System.out.println("erro ao editar a tabela" + e.getMessage());
+				System.out.println("ROLLBACK EXECUTADO");
+				conn.rollback();
+			}
+			
+		}
+		
+		public boolean isIDAlreadyExists(int id )throws SQLException {
+			
+			try (PreparedStatement preparedStatement = conn.prepareStatement("SELECT id FROM tasks WHERE id = ?")) {
+		        preparedStatement.setInt(1, id);
+		        try (ResultSet resultSet = preparedStatement.executeQuery()) {
+		            return resultSet.next(); 
+		        }
+		    }
+		}
+		
+}	
 
 //"jdbc:mysql://localhost/todolist?useTimezone=true&serverTimezone=UTC","root","0910"
