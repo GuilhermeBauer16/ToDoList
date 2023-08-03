@@ -17,18 +17,19 @@ public class CreateParameter {
 	}
 	
 	public int CreateInt(String mensagem) {
-		int numero = 0;
-		while (true) {
-			System.out.print(mensagem);
-			
-			if(scanner.hasNextInt()) {
-				numero = scanner.nextInt();
-				break;
-			}else {
-				System.out.println("Por favor digite um numero!");
-			}
-		}
-		return numero;
+        int numero = 0 ;
+        while(true){
+            System.out.print(mensagem);
+            if (scanner.hasNextInt()){
+                numero = scanner.nextInt();
+                break;
+
+            }else{
+                System.out.println("Por favor digite um número!");            
+                scanner.nextLine();
+            }
+        }
+        return numero;
 	}
 	
 	public double CreateDouble(String mensagem) {
@@ -41,6 +42,7 @@ public class CreateParameter {
 				break;
 			}else {
 				System.out.println("Por favor digite um numero!");
+				scanner.nextLine();
 			}
 		}
 		return numeroDouble;

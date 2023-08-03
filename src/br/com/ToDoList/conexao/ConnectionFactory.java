@@ -40,15 +40,7 @@ public class ConnectionFactory {
 					+ "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
 					+ "due_data DATE,"
 					+ "status VARCHAR(80) DEFAULT 'por fazer')")){
-			
-			
-//			String CreateTable = "CREATE TABLE IF NOT EXISTS tasks("
-//					+ "id INT AUTO_INCREMENT PRIMARY KEY,  "
-//					+ "task VARCHAR(255) NOT NULL, "
-//					+ "description TEXT, "
-//					+ "created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"
-//					+ "due_data DATE,"
-//					+ "status VARCHAR(80) DEFAULT 'por fazer')";
+		
 			conn.setAutoCommit(false);
 			preparedStatement.execute();
 			
@@ -91,26 +83,29 @@ public class ConnectionFactory {
 			preparedStatement = conn.prepareStatement("SELECT * FROM tasks");
 			preparedStatement.execute();
 			try(ResultSet resultSet = preparedStatement.getResultSet();){
-			while(resultSet.next()) {
-				Integer id = resultSet.getInt("id");
-				String task = resultSet.getString("task");
-				String description = resultSet.getString("description");
-				String created_at = resultSet.getString("created_at");
-				String due_data = resultSet.getString("due_data");
-				String status = resultSet.getString("status");
-				System.out.println("id: " + + id );
-				System.out.println("tarefa "+ task );
-				System.out.println( "Descricão "+ description );
-				System.out.println(" data para terminar " + due_data  );
-				System.out.println(" status " + status );
-				System.out.println();
+				System.out.println("=======================================================================================");
+		        System.out.println("ID   | Tarefa                  | Descrição               | Data para terminar | Status");
+		        System.out.println("=======================================================================================");
+
+		        while (resultSet.next()) {
+		            Integer id = resultSet.getInt("id");
+		            String task = resultSet.getString("task");
+		            String description = resultSet.getString("description");
+		            String createdAt= resultSet.getString("created_at");
+		            String due_data = resultSet.getString("due_data");
+		            String status = resultSet.getString("status");
+		            
+		            
+		            System.out.printf("%-5s| %-23s| %-25s| %-19s| %-8s%n", id, task, description, due_data, status);
+		           
 						
 				
 			}
 			
+		        System.out.println("=".repeat(87));
 		}
 		
-			
+		
 
 	}
 		
@@ -121,7 +116,7 @@ public class ConnectionFactory {
 				preparedStatement.setInt(1, id);
 				preparedStatement.executeUpdate();
 				conn.commit();
-				System.out.println("Tabela com id " + id + "deletada com sucesso" );
+				System.out.println("Tarefa com id " + id +" Deletada com sucesso" );
 				
 			}catch (SQLException e) {
 				System.out.println("erro ao deletar a tabela" + e.getMessage());
@@ -135,7 +130,7 @@ public class ConnectionFactory {
 		public void  UpdateTable(String task , String description , String due_data , String status,int id ) throws SQLException{
 			
 			try(
-					PreparedStatement  preparedStatement = conn.prepareStatement("UPDATE task SET task = ? , description = ? , due_data = ? , status = ? WHERE id = ?"))
+					PreparedStatement  preparedStatement = conn.prepareStatement("UPDATE tasks SET task = ? , description = ? , due_data = ? , status = ? WHERE id = ?"))
 			{
 //				preparedStatement = conn.prepareStatement("INSERT INTO tasks (task , description , due_data, status) VALUES (? , ? , ? , ?)");
 				conn.setAutoCommit(false);
