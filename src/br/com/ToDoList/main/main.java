@@ -24,10 +24,10 @@ class main {
 	        
 	        if (option == 1) {
 	        	System.out.println(createParameter.title("Nova tarefa ", 30));
-	            String task = createParameter.CreateString("tarefa: ").replace(" ", "_").trim();
-	            String description = createParameter.CreateString("descrição: ").replace(" ", "_").trim();
-	            String data = createParameter.CreateString("Data para terminar(AAAA/MM/DD): ").replace(" ", "_").trim();
-	            String status = createParameter.CreateString("status: ").replace(" ", "_").trim();
+	            String task = createParameter.CreateString("tarefa: ");
+	            String description = createParameter.CreateString("descrição: ");
+	            String data = createParameter.CreateString("Data para terminar(AAAA/MM/DD): ");
+	            String status = createParameter.CreateString("status: ");
 	            connectionFactory.InsertIntoTable(task,description,data,status);
 	            
 	        }else if (option == 2 ) {
