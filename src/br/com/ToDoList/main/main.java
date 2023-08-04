@@ -18,7 +18,7 @@ class main {
 	        System.out.println("[4]Editar tarefas");
 	        System.out.println("[5]Sair");
 	        System.out.println(createParameter.line(30));
-	        int option = createParameter.CreateInt("\u001B[0msua opÃ§Ã£o: ");
+	        int option = createParameter.CreateInt("\u001B[0msua opção: ");
 	        
 	        if (option == 1) {
 	        	
@@ -44,8 +44,8 @@ class main {
 	        	    }else {
 	        	
 			        	String newTask = createParameter.CreateString("tarefa: ");
-			            String newDescription = createParameter.CreateString("descriÃ§Ã£o: ");
-			            String newData = createParameter.CreateString("data(AAAA/MM/DD: ");
+			            String newDescription = createParameter.CreateString("descrição: ");
+			            String newData = createParameter.CreateString("Data para terminar(AAAA/MM/DD): ");
 			            String newStatus = createParameter.CreateString("status: ");
 			            connectionFactory.UpdateTable(newTask, newDescription, newData, newStatus,UpdateId);
 	        	    }

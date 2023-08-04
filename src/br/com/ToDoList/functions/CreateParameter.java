@@ -41,7 +41,7 @@ public class CreateParameter {
 				numeroDouble = scanner.nextDouble();
 				break;
 			}else {
-				System.out.println("Por favor digite um numero!");
+				System.out.println("Por favor digite um número!");
 				scanner.nextLine();
 			}
 		}

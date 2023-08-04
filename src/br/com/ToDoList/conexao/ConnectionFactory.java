@@ -21,7 +21,7 @@ public class ConnectionFactory {
 		String senha = "0910";
 		conn = DriverManager.getConnection(Conexao,usuario,senha);
 		
-        System.out.println("Conectou!!");
+        
     }
 
 
