@@ -19,3 +19,16 @@ consegui aprender como esse sistema funciona e como utilizar um PreparedStatemen
 Além disso, aprendi como conectar com o banco de dados MySQL através de um JDBC para implementar as operações 
 CRUD (Create, Read, Update, Delete) em Java com o MySQL,
 além de melhorar a minha capacidade de pesquisa e resolução de problemas.
+
+## Funcões 
+
+Com esse To-do list, o usuário poderá adicionar as suas tarefas,
+divididas entre:
+
+* adição de tarefa:
+
+  * Nome da tarefa: O usuário poderá adicionar o nome da tarefa.
+  * Descrição: O usuário poderá adicionar a decrição da tarefa.
+  * Data da finalização da tarefa: O usuário poderá adicionar a Data da finalização da tarefa (AAAA/MM/DD) .
+  * Status: O usuário poderá adicionar o status da tarefa.
+
