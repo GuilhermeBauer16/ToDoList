@@ -13,3 +13,9 @@ e o status, se já foi concluída ou não, além de poder visualizar, editar e d
 
 
 ## Aprendizado 
+
+Foi um projeto bastante desafiador, por utilizar o JDBC e o DriverManager. No entanto,
+consegui aprender como esse sistema funciona e como utilizar um PreparedStatement para evitar SQL injection.
+Além disso, aprendi como conectar com o banco de dados MySQL através de um JDBC para implementar as operações 
+CRUD (Create, Read, Update, Delete) em Java com o MySQL,
+além de melhorar a minha capacidade de pesquisa e resolução de problemas.
