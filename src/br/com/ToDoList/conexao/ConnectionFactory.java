@@ -21,6 +21,7 @@ public class ConnectionFactory {
 		String senha = "0910";
 		conn = DriverManager.getConnection(Conexao,usuario,senha);
 		
+		
         
     }
 
@@ -29,6 +30,24 @@ public class ConnectionFactory {
 		conn.close();
 	
 	}
+	
+//	public void CreateDB() throws SQLException {
+//		
+//		try(PreparedStatement  preparedStatement = conn.prepareStatement("CREATE DATABASE IF NOT EXISTS ToDoList"
+//				+ "(DEFAULT CHARACTER SET utf8mb4 "
+//				+ "DEFAULT COLLATE utf8mb4_general_ci)")){
+//			conn.setAutoCommit(false);
+//			preparedStatement.execute();
+//			conn.commit();
+//			
+//			
+//		}catch (SQLException e) {
+//			System.out.println("erro ao criar a banco de dados" + e.getMessage());
+//			System.out.println("ROLLBACK EXECUTADO");
+//			conn.rollback();
+//		
+//		
+//	}}
 	
 	public void CreateTable() throws SQLException {
 		

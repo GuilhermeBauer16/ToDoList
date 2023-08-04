@@ -4,24 +4,25 @@ import java.util.Scanner;
 
 public class CreateParameter {
 	
-	public Scanner scanner;
-	
-	public CreateParameter() {
-		scanner = new Scanner(System.in);
-	}
+
 	
 	
 	public String CreateString(String mensagem) {
-		System.out.print(mensagem);
-		return scanner.next();
+		Scanner  scanner = new Scanner(System.in);
+	    System.out.println(mensagem);
+	    String parameter =  scanner.nextLine();
+	    
+	    return parameter ;
 	}
 	
 	public int CreateInt(String mensagem) {
+		Scanner scanner = new Scanner(System.in);
         int numero = 0 ;
         while(true){
             System.out.print(mensagem);
             if (scanner.hasNextInt()){
                 numero = scanner.nextInt();
+                
                 break;
 
             }else{
@@ -33,12 +34,14 @@ public class CreateParameter {
 	}
 	
 	public double CreateDouble(String mensagem) {
+		Scanner scanner = new Scanner(System.in);
 		double numeroDouble = 0.0;
 		while (true) {
 			System.out.print(mensagem);
 			
 			if(scanner.hasNextDouble()) {
 				numeroDouble = scanner.nextDouble();
+				
 				break;
 			}else {
 				System.out.println("Por favor digite um número!");
