@@ -32,3 +32,14 @@ divididas entre:
   * Data da finalização da tarefa: O usuário poderá adicionar a Data da finalização da tarefa (AAAA/MM/DD) .
   * Status: O usuário poderá adicionar o status da tarefa.
 
+* Edição das suas tarefas adicionadas.
+
+* Deleção das suas tarefas.
+
+* Visualização das suas tarefas.
+  
+ ## Autor 
+
+ www.linkedin.com/in/guilherme-bauer-desenvolvedor
+
+
