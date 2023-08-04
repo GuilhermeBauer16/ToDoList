@@ -2,11 +2,12 @@ package br.com.ToDoList.main;
 
 import java.sql.SQLException; 
 import br.com.ToDoList.functions.CreateParameter;
+import br.com.ToDoList.conexao.CleanTerminal;
 import br.com.ToDoList.conexao.ConnectionFactory;
 class main {
 	
 	public static void main(String[] args) throws SQLException, InterruptedException {
-
+		CleanTerminal cleanTerminal = new CleanTerminal();
 		CreateParameter createParameter = new CreateParameter();
         ConnectionFactory connectionFactory = new ConnectionFactory();
         
@@ -21,6 +22,7 @@ class main {
 	        System.out.println("[5]Sair");
 	        System.out.println(createParameter.line(30));
 	        int option = createParameter.CreateInt("sua opção: ");
+	        CleanTerminal.ClearTerminal();
 	        
 	        if (option == 1) {
 	        	System.out.println(createParameter.title("Nova tarefa ", 30));
@@ -29,6 +31,7 @@ class main {
 	            String data = createParameter.CreateString("Data para terminar(AAAA/MM/DD): ");
 	            String status = createParameter.CreateString("status: ");
 	            connectionFactory.InsertIntoTable(task,description,data,status);
+	            CleanTerminal.ClearTerminal();
 	            
 	        }else if (option == 2 ) {
 	        	System.out.println(createParameter.title("Suas tarefas ", 30));
@@ -40,9 +43,10 @@ class main {
 	        	connectionFactory.SelectTables();
 	        	int deletedId = createParameter.CreateInt("Imforme o ID da tabela que deseja deletar: ");
 	        	connectionFactory.DeleteTable(deletedId);
-	        	
+	        	CleanTerminal.ClearTerminal();
 	        }else if (option == 4) {
 	           System.out.println(createParameter.title("Edição de tarefas ", 30));
+	           connectionFactory.SelectTables();
 	           int UpdateId = createParameter.CreateInt("Imforme o ID para editar a tarefa: ");
 	           if (!connectionFactory.isIDAlreadyExists(UpdateId)) {
 	        	        System.out.println("ID não encontrado na tabela.");
@@ -53,6 +57,7 @@ class main {
 			            String newData = createParameter.CreateString("Data para terminar(AAAA/MM/DD): ");
 			            String newStatus = createParameter.CreateString("status: ").replace(" ", "_");
 			            connectionFactory.UpdateTable(newTask, newDescription, newData, newStatus,UpdateId);
+			            CleanTerminal.ClearTerminal();
 	        	    }
 	        }else if (option == 5) {
 	        	
