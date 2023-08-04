@@ -12,6 +12,10 @@ e o status, se já foi concluída ou não, além de poder visualizar, editar e d
 ![image](https://github.com/GuilhermeBauer16/ToDoList/assets/123701893/c091bc27-0ae4-4185-8da2-416420dc7253)
 
 
+https://github.com/GuilhermeBauer16/ToDoList/assets/123701893/122290e2-1392-4efc-822e-93a6d76eaedf
+
+
+
 ## Aprendizado 
 
 Foi um projeto bastante desafiador, por utilizar o JDBC e o DriverManager. No entanto,
