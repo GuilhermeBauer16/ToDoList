@@ -9,7 +9,7 @@ e o status, se já foi concluída ou não, além de poder visualizar, editar e d
 
 ## Exemplo de funcionamento 
 
-![image](https://github.com/GuilhermeBauer16/ToDoList/assets/123701893/c091bc27-0ae4-4185-8da2-416420dc7253)
+![image](https://github.com/GuilhermeBauer16/ToDoList/assets/123701893/c091bc27-0ae4-4185-8da2-416420dc7253)   
 
 
 https://github.com/GuilhermeBauer16/ToDoList/assets/123701893/122290e2-1392-4efc-822e-93a6d76eaedf
